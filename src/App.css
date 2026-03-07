@@ -1,42 +1,186 @@
-#root {
-  max-width: 1280px;
+/* App.css */
+
+/* --- Base Styles & Typography --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Base Headings for Desktop */
+h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+p { line-height: 1.6; }
+
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 20px;
+}
+.hero {
+  margin: 2% auto;
+}
+
+/* --- Flexbox Utility Classes --- */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; flex-wrap: wrap; }
+.align-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 10px; }
+.gap-2 { gap: 20px; }
+.gap-3 { gap: 30px; }
+
+/* --- Responsive Layout Rules (Mobile First) --- */
+
+/* By default (Mobile), sections stack as columns */
+.responsive-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.flex-1 {
+  width: 100%;
+}
+
+/* On tablets and larger screens (768px and up), switch to a row layout */
+@media (min-width: 768px) {
+  .responsive-row {
+    flex-direction: row;
+  }
+  .flex-1 {
+    flex: 1;
+    width: auto;
+  }
+  /* Ensure header acts as a row on desktop */
+  .header-flex {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-list {
+    flex-direction: row;
+  }
+}
+
+/* --- Mobile Specific Tweaks (Under 768px) --- */
+@media (max-width: 767px) {
+  /* Scale down text for smaller screens */
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  /* Stack the header logo and navigation vertically */
+  .header-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  /* Stack the navigation links and center them */
+  .nav-list {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; /* Adds separation between mobile links */
+  }
+
+  /* Stack the Specials title and 'Reserve table' button so they don't overlap */
+  .specials-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+/* --- Specific Section Styles --- */
+.bg-white {
+  background-color: #fff;
+  padding: 40px 0;
+}
+
+.bg-dark {
+  background-color: olivedrab;
+  color: #fff;
+  padding: 40px 0;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Placeholders for Images */
+.img-placeholder {
+  background-color: #d1d1d1;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
+/* Card Styles */
 .card {
-  padding: 2em;
+  background-color: #e2e2e2;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px; /* Added slight rounding for a modern look */
+  overflow: hidden;
 }
 
-.read-the-docs {
-  color: #888;
+.card-content {
+  padding: 15px;
+}
+
+.text-highlight {
+  color: #f4ce14; 
+  font-weight: bold;
+}
+
+.btn {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  width: max-content; /* Prevents button from stretching to full width on mobile */
+}
+
+.overlay-style {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-style {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.close-button-style {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #495E57;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
