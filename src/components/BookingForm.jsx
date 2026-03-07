@@ -6,6 +6,8 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
 
+  const today = new Date().toISOString().split('T')[0];
+
   const isFormValid = date !== '' && time !== '' && guests >= 1 && guests <= 10 && occasion !== '';
 
   const handleDateChange = (event) => {
@@ -28,7 +30,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   return (
     <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '20px' }}>
       <label htmlFor="res-date">Choose date</label>
-      <input type="date" id="res-date" value={date} onChange={handleDateChange} required />
+      <input type="date" id="res-date" value={date} onChange={handleDateChange} required min={today} />
 
       <label htmlFor="res-time">Choose time</label>
       <select id="res-time" value={time} onChange={(e) => setTime(e.target.value)} required>
